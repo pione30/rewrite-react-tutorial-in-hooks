@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 type SquareProps = {
-  value: number
+  value: string | null
 }
 
 type SquareState = {
@@ -27,9 +27,20 @@ class Square extends React.Component<SquareProps, SquareState> {
   }
 }
 
-class Board extends React.Component {
+type BoardState = {
+  squares: Array<string | null>
+}
+
+class Board extends React.Component<{}, BoardState> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      squares: Array(9).fill(null)
+    }
+  }
+
   renderSquare(i: number) {
-    return <Square value={i}/>;
+    return <Square value={ this.state.squares[i] }/>;
   }
 
   render() {
