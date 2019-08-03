@@ -104,7 +104,24 @@ function calculateWinner(squares: Array<string | null>) {
   return null;
 }
 
-class Game extends React.Component {
+type GameState = {
+  history: Array<{
+    squares: Array<string | null>
+  }>,
+  xIsNext: boolean
+}
+
+class Game extends React.Component<any, GameState> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      history: [{
+        squares: Array(9).fill(null)
+      }],
+      xIsNext: true
+    }
+  }
+
   render() {
     return (
       <div className="game">
