@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
@@ -59,17 +59,12 @@ type GameState = {
   xIsNext: boolean
 }
 
-class Game extends React.Component<any, GameState> {
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null)
-      }],
-      stepNumber: 0,
-      xIsNext: true
-    }
-  }
+const Game = () => {
+  const [history, setHistory] = useState([{
+    squares: Array(9).fill(null)
+  }])
+  const [stepNumber, setStepNumber] = useState(0)
+  const [xIsNext, setXIsNext] = useState(true)
 
   handleClick(i: number) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1)
