@@ -66,30 +66,26 @@ const Game = () => {
   const [stepNumber, setStepNumber] = useState(0)
   const [xIsNext, setXIsNext] = useState(true)
 
-  handleClick(i: number) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1)
-    const current = history[history.length - 1]
+  const handleClick = (i: number) => {
+    const historyUntilCurrentStep = history.slice(0, stepNumber + 1)
+    const current = historyUntilCurrentStep[historyUntilCurrentStep.length - 1]
     const squares = current.squares.slice()
     // return if this game is already over or the clicked square is already filled
     if (calculateWinner(squares) || squares[i]) {
       return
     }
 
-    squares[i] = this.state.xIsNext ? 'X' : 'O'
-    this.setState({
-      history: history.concat([{
-        squares: squares,
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
-    })
+    squares[i] = xIsNext ? 'X' : 'O'
+    setHistory(historyUntilCurrentStep.concat([{
+      squares: squares,
+    }]))
+    setStepNumber(historyUntilCurrentStep.length)
+    setXIsNext(!xIsNext)
   }
 
-  jumpTo(step: number) {
-    this.setState({
-      stepNumber: step,
-      xIsNext: (step % 2) === 0
-    })
+  const jumpTo = (step: number) => {
+    setStepNumber(step)
+    setXIsNext((step % 2) === 0)
   }
 
   const current = history[stepNumber]
