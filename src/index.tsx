@@ -51,14 +51,6 @@ function Board(props: BoardProps) {
   )
 }
 
-type GameState = {
-  history: Array<{
-    squares: Array<string | null>
-  }>,
-  stepNumber: number,
-  xIsNext: boolean
-}
-
 const Game = () => {
   const [history, setHistory] = React.useState<Array<{
     squares: Array<string | null>
