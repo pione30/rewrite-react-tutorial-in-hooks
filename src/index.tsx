@@ -7,7 +7,7 @@ type SquareProps = {
   onClick: () => void
 }
 
-function Square(props: SquareProps) {
+const Square = (props: SquareProps) => {
   return (
     <button className="square" onClick={ props.onClick }>
       {props.value}
@@ -20,7 +20,7 @@ type BoardProps = {
   onClick: (i: number) => void
 }
 
-function Board(props: BoardProps) {
+const Board = (props: BoardProps) => {
   const renderSquare = (i: number) => {
     return (
       <Square
@@ -121,7 +121,7 @@ const Game = () => {
   )
 }
 
-function calculateWinner(squares: Array<string | null>) {
+const calculateWinner = (squares: Array<string | null>) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
