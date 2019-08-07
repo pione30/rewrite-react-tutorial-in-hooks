@@ -60,7 +60,9 @@ type GameState = {
 }
 
 const Game = () => {
-  const [history, setHistory] = useState([{
+  const [history, setHistory] = React.useState<Array<{
+    squares: Array<string | null>
+  }>>([{
     squares: Array(9).fill(null)
   }])
   const [stepNumber, setStepNumber] = useState(0)
